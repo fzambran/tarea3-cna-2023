@@ -123,12 +123,16 @@ En conclusión:
 
 
 2. Revisa el archivo `Dockerfile` en la carpeta `frontend`. ¿Qué te llama la atención? ¿En qué es diferente de los otros archivos `Dockerfile`?
+R. En comparación con los otros Dockerfiles, este utiliza la construcción en dos etapas para optimizar el tamaño del contenedor final. La etapa de construcción incluye todas las dependencias de desarrollo y realiza la compilación, mientras que la etapa de liberación solo incluye los archivos necesarios para ejecutar la aplicación en un servidor Nginx. Los Dockerfiles anteriores no utilizan una construcción en dos etapas y simplemente instalan las dependencias y copian los archivos al contenedor, sin dividir el proceso en etapas de construcción y liberación.
 
 3. ¿Para qué sirve el servicio flyway? ¿Qué pasa al hacer `docker ps` con respecto a este servicio?
+R. Flyway es una herramienta de migración de bases de datos que permite a los desarrolladores manejar las versiones de las bases de datos de manera estructurada y automática. Facilita la gestión de esquemas de bases de datos y versiones, lo que es crucial en aplicaciones en desarrollo continuo o en colaboración con múltiples desarrolladores. Cuando se ejecuta docker ps, se obtiene una lista de los contenedores Docker que están actualmente en ejecución en el sistema. Esto incluye los contenedores que fueron lanzados con docker run y están actualmente en ejecución. Sin embargo, docker ps no muestra los contenedores que han finalizado su ejecución.
 
 4. ¿Cuantas imágenes se crean? ¿Cuántos contenedores están activos?
+R. En el archivo docker-compose.yml, se definen cuatro servicios: frontend, backend, ws-server, y flyway. Cada uno de estos servicios se basa en una imagen de Docker o se construye a partir de un Dockerfile. Asumiendo que todas las imágenes definidas en el archivo docker-compose.yml se construyen o descargan correctamente, se crearán cuatro imágenes de Docker. Hay 2 contenedores activos.
 
 5. Deten los contenedores con `docker-compose down`, luego reinicia con `docker-compose up -d`. Ingresa a la base de datos. ¿Qué pasa con los datos? 
+R. Después de reiniciar, se puede acceder a los datos de la base de datos.
 
 6. Baja los contenedres. Crea un volumen para postgres agregando estas sentencias en el servicio `postgres`: 
 
@@ -140,4 +144,5 @@ En conclusión:
 Reinicia los contenedores. Explica qué pasa con la base de datos después de hacer esto.
 
 ¿Qué pasa con la carpeta `data`, qué crees que contiene?
+Cuando se reinician los contenedores después de agregar esta configuración de volumen y después de que se ha creado la base de datos en el contenedor PostgreSQL, los datos de la base de datos se almacenan en la carpeta ./data en la máquina local. Esto significa que incluso si se detiene o se elimina el contenedor de PostgreSQL, los datos de la base de datos se mantendrán en la carpeta ./data.
 
