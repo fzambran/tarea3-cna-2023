@@ -117,17 +117,20 @@ Felipe Zambrano
 1. Revisa el archivo `Dockerfile` en la carpeta `users-svc` y compáralo con el mismo archivo en la carpeta `ws-server`. ¿Qué te llama la atención? Ahora revisa la sentencia `command` para los respectivos servicios en el archivo `docker-compose.yml`. ¿Qué concluyes?
 R. Los dos archivos Dockerfile son idénticos, por lo que no hay ninguna diferencia notable entre ellos. Ambos utilizan la misma imagen base de Docker (node:18-alpine), establecen un directorio de trabajo en /usr/app, copian el archivo package.json al directorio de trabajo, ejecutan npm install --quiet para instalar las dependencias del proyecto, y finalmente copian todo el contenido del contexto de construcción (incluidos los archivos locales) al directorio de trabajo en el contenedor Docker.
 
+En conclusión:
+* Los servicios frontend y backend utilizan los Dockerfiles indicados anteriormente y ejecutan los comandos predeterminados del contenedor Node.js para iniciar las aplicaciones.
+* Los servicios ws-server y flyway también utilizan los Dockerfiles indicados y ejecutan comandos personalizados específicos para iniciar sus respectivas aplicaciones.
 
 
-3. Revisa el archivo `Dockerfile` en la carpeta `frontend`. ¿Qué te llama la atención? ¿En qué es diferente de los otros archivos `Dockerfile`?
+2. Revisa el archivo `Dockerfile` en la carpeta `frontend`. ¿Qué te llama la atención? ¿En qué es diferente de los otros archivos `Dockerfile`?
 
-4. ¿Para qué sirve el servicio flyway? ¿Qué pasa al hacer `docker ps` con respecto a este servicio?
+3. ¿Para qué sirve el servicio flyway? ¿Qué pasa al hacer `docker ps` con respecto a este servicio?
 
-5. ¿Cuantas imágenes se crean? ¿Cuántos contenedores están activos?
+4. ¿Cuantas imágenes se crean? ¿Cuántos contenedores están activos?
 
-6. Deten los contenedores con `docker-compose down`, luego reinicia con `docker-compose up -d`. Ingresa a la base de datos. ¿Qué pasa con los datos? 
+5. Deten los contenedores con `docker-compose down`, luego reinicia con `docker-compose up -d`. Ingresa a la base de datos. ¿Qué pasa con los datos? 
 
-7. Baja los contenedres. Crea un volumen para postgres agregando estas sentencias en el servicio `postgres`: 
+6. Baja los contenedres. Crea un volumen para postgres agregando estas sentencias en el servicio `postgres`: 
 
 ```
  volumes:
