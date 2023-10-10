@@ -109,19 +109,25 @@ Navega con browser a la dirección `localhost:FRONT_PORT`, deberias ver la pagin
 
 Registra un usuario, la aplicación debería estar corriendo correctamente.
 
+# Nombre
+Felipe Zambrano
+
 ## Preguntas
 
 1. Revisa el archivo `Dockerfile` en la carpeta `users-svc` y compáralo con el mismo archivo en la carpeta `ws-server`. ¿Qué te llama la atención? Ahora revisa la sentencia `command` para los respectivos servicios en el archivo `docker-compose.yml`. ¿Qué concluyes?
+R. Los dos archivos Dockerfile son idénticos, por lo que no hay ninguna diferencia notable entre ellos. Ambos utilizan la misma imagen base de Docker (node:18-alpine), establecen un directorio de trabajo en /usr/app, copian el archivo package.json al directorio de trabajo, ejecutan npm install --quiet para instalar las dependencias del proyecto, y finalmente copian todo el contenido del contexto de construcción (incluidos los archivos locales) al directorio de trabajo en el contenedor Docker.
 
-2. Revisa el archivo `Dockerfile` en la carpeta `frontend`. ¿Qué te llama la atención? ¿En qué es diferente de los otros archivos `Dockerfile`?
 
-3. ¿Para qué sirve el servicio flyway? ¿Qué pasa al hacer `docker ps` con respecto a este servicio?
 
-4. ¿Cuantas imágenes se crean? ¿Cuántos contenedores están activos?
+3. Revisa el archivo `Dockerfile` en la carpeta `frontend`. ¿Qué te llama la atención? ¿En qué es diferente de los otros archivos `Dockerfile`?
 
-5. Deten los contenedores con `docker-compose down`, luego reinicia con `docker-compose up -d`. Ingresa a la base de datos. ¿Qué pasa con los datos? 
+4. ¿Para qué sirve el servicio flyway? ¿Qué pasa al hacer `docker ps` con respecto a este servicio?
 
-6. Baja los contenedres. Crea un volumen para postgres agregando estas sentencias en el servicio `postgres`: 
+5. ¿Cuantas imágenes se crean? ¿Cuántos contenedores están activos?
+
+6. Deten los contenedores con `docker-compose down`, luego reinicia con `docker-compose up -d`. Ingresa a la base de datos. ¿Qué pasa con los datos? 
+
+7. Baja los contenedres. Crea un volumen para postgres agregando estas sentencias en el servicio `postgres`: 
 
 ```
  volumes:
